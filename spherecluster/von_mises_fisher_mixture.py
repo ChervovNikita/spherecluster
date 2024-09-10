@@ -8,7 +8,7 @@ from scipy.special import iv  # modified Bessel function of first kind, I_v
 from scipy.special import logsumexp
 
 from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
-from sklearn.cluster.k_means_ import _init_centroids, _tolerance, _validate_center_shape
+from sklearn.cluster._kmeans import _tolerance
 from sklearn.metrics.pairwise import cosine_distances
 from sklearn.preprocessing import normalize
 from sklearn.utils import check_array, check_random_state, as_float_array
@@ -16,7 +16,7 @@ from sklearn.utils.extmath import squared_norm
 from sklearn.utils.validation import FLOAT_DTYPES
 from sklearn.utils.validation import check_is_fitted
 
-from . import spherical_kmeans
+import spherical_kmeans
 
 MAX_CONTENTRATION = 1e10
 
@@ -219,7 +219,7 @@ def _init_unit_centers(X, n_clusters, random_state, init):
         return centers
 
     elif init == "k-means++":
-        centers = _init_centroids(
+        centers = KMeans._init_centroids(
             X,
             n_clusters,
             "k-means++",
@@ -531,7 +531,7 @@ def movMF(
 
     if hasattr(init, "__array__"):
         init = check_array(init, dtype=X.dtype.type, copy=True)
-        _validate_center_shape(X, n_clusters, init)
+        KMeans._validate_center_shape(X, n_clusters, init)
 
         if n_init != 1:
             warnings.warn(
