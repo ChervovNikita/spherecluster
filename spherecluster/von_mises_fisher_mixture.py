@@ -525,7 +525,7 @@ def movMF(
             " got %d instead" % max_iter
         )
 
-    best_inertia = np.infty
+    best_inertia = np.inf
     X = as_float_array(X, copy=copy_x)
     tol = _tolerance(X, tol)
 

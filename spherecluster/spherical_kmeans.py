@@ -146,7 +146,7 @@ def spherical_k_means(
             " got %d instead" % max_iter
         )
 
-    best_inertia = np.infty
+    best_inertia = np.inf
     # avoid forcing order when copy_x=False
     order = "C" if copy_x else None
     X = check_array(
