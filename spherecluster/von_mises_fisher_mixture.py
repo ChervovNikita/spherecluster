@@ -16,7 +16,7 @@ from sklearn.utils.extmath import squared_norm
 from sklearn.utils.validation import FLOAT_DTYPES
 from sklearn.utils.validation import check_is_fitted
 
-import spherical_kmeans
+from . import spherical_kmeans
 
 MAX_CONTENTRATION = 1e10
 
